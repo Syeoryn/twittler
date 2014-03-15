@@ -10,13 +10,19 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
-
+		
+		var makeTweet = function(){
+			var tweet = streams.home[index];
+			var $tweet = $('<div></div>');
+			var date = tweet.created_at.toTimeString();
+			var time = date.slice(0,date.indexOf(' '));
+			$tweet.text('@' + tweet.user + '  --  ' + time + ': ' + tweet.message);
+			$tweet.appendTo($body);
+		}
+		
         var index = streams.home.length - 1;
         while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          makeTweet();
           index -= 1;
         }
 
