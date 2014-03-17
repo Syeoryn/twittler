@@ -10,11 +10,11 @@ div {
 .update {
 	background-color: rgb(248, 168, 80);
 	text-align: center;
-	margin-left: 150px;
+	margin: 20px 150px 25px 150px;
 	width: 200px;
 }
 
 .update:hover{
-	background-color:rgb(245, 140, 25);
+	background-color:rgb(247, 131, 5);
 	cursor: pointer;
 }

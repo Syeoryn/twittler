@@ -40,8 +40,10 @@
 		
 		updateTweets();		
 		setInterval(function(){
-			$('.update').text( streams.home.length - numberPosted + " new Tweets")
-		}, 3000);
+			var totalTweets = streams.home.length - numberPosted;
+			$('.update').text( totalTweets + " new Tweets");
+			$('title').text("(" + totalTweets + ") Twittler")
+		}, 5000);
 		
 		
       });
