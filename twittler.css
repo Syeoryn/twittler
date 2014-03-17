@@ -1,0 +1,8 @@
+div {
+	background-color: rgb(96, 175, 248);
+	margin: 10px;
+	box-shadow: 2px 3px 3px #888888;
+	width: 500px;
+	padding: 10px;
+	border-radius: 2px;
+}
