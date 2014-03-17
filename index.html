@@ -11,21 +11,27 @@
         var $body = $('body');
         $body.html('');
 		
-		var makeTweet = function(){
+		var numberPosted = 0
+		
+		var makeTweet = function(index){
 			var tweet = streams.home[index];
 			var $tweet = $('<div></div>');
 			var date = tweet.created_at.toTimeString();
 			var time = date.slice(0,date.indexOf(' '));
 			$tweet.text('@' + tweet.user + '  --  ' + time + ': ' + tweet.message);
-			$tweet.appendTo($body);
+			$tweet.prependTo($body);
 		}
 		
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          makeTweet();
-          index -= 1;
-        }
-
+		var updateTweets = function(){
+			while(numberPosted < streams.home.length){
+				makeTweet(numberPosted);
+				numberPosted ++;
+			}
+		}
+		
+		
+		setInterval(updateTweets,3000);
+		
       });
 
     </script>
