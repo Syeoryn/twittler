@@ -3,14 +3,17 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-	<link rel="stylesheet" type="text/css" href = "twittler.css">
+	<link rel="stylesheet" type="text/css" href = "twittler.css"> 
+	<title>Twittler</title>
   </head>
+
   <body>
+	<div class="update">0 new Tweets</div>
     <script>
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+//	        $body.html('');
 		
 		var numberPosted = 0
 		
@@ -20,7 +23,7 @@
 			var date = tweet.created_at.toTimeString();
 			var time = date.slice(0,date.indexOf(' '));
 			$tweet.text('@' + tweet.user + '  --  ' + time + ': ' + tweet.message);
-			$tweet.prependTo($body);
+			$('.update').after($tweet);
 		}
 		
 		var updateTweets = function(){
@@ -30,8 +33,16 @@
 			}
 		}
 		
-		updateTweets();
-		setInterval(updateTweets,3000);
+		$('.update').on('click',function(){
+			updateTweets();
+			$('.update').text('0 new Tweets');
+		});
+		
+		updateTweets();		
+		setInterval(function(){
+			$('.update').text( streams.home.length - numberPosted + " new Tweets")
+		}, 3000);
+		
 		
       });
 
