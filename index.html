@@ -13,16 +13,17 @@
 
       $(document).ready(function(){
         var $body = $('body');
-//	        $body.html('');
 		
 		var numberPosted = 0
 		
 		var makeTweet = function(index){
 			var tweet = streams.home[index];
-			var $tweet = $('<div></div>');
+			var $tweet = $('<div class="tweet"></div>');
 			var date = tweet.created_at.toTimeString();
-			var time = date.slice(0,date.indexOf(' '));
-			$tweet.text('@' + tweet.user + '  --  ' + time + ': ' + tweet.message);
+			var timestamp = date.slice(0,date.indexOf(' '));
+			$tweet.append('<h3 id="name">' + '@' + tweet.user + '    <font size=2.5px>' + timestamp + '</font></h3>');
+//			$tweet.append('<p id="timestamp">' + timestamp + '</p>');
+			$tweet.append('<p id="message">' + tweet.message + '</p>');
 			$('.update').after($tweet);
 		}
 		
@@ -36,6 +37,7 @@
 		$('.update').on('click',function(){
 			updateTweets();
 			$('.update').text('0 new Tweets');
+			$('title').text('Twittler');
 		});
 		
 		updateTweets();		
