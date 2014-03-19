@@ -19,7 +19,7 @@
 		
 		var makeTweet = function(index){
 			var tweet = streams.home[index];
-			var $tweet = $('<div class="tweet"></div>');
+			var $tweet = $('<div class="new tweet"></div>');
 			var date = tweet.created_at;
 			var timestamp = moment(date).fromNow();
 			$tweet.append('<h3 id="name">' + '@' + tweet.user + '    <font size=2.5px>' + timestamp + '</font></h3>');
@@ -29,8 +29,13 @@
 		}
 		
 		var updateTweets = function(){
-			$('.tweet').remove();
-			numberPosted = 0;
+			oldestTweet = 0;
+			while(oldestTweet < numberPosted){
+				var date = streams.home[oldestTweet].created_at;
+				$('font').text(moment(date).fromNow());
+				oldestTweet ++;
+			}
+			$('.tweet').removeClass('new');
 			while(numberPosted < streams.home.length){
 				makeTweet(numberPosted);
 				numberPosted ++;
