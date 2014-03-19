@@ -29,10 +29,10 @@
 		}
 		
 		var updateTweets = function(){
-			oldestTweet = 0;
+			var oldestTweet = 0;
 			while(oldestTweet < numberPosted){
 				var date = streams.home[oldestTweet].created_at;
-				$('font').text(moment(date).fromNow());
+				$('body :nth-last-child(' + oldestTweet+2 + ') font').text(moment(date).fromNow());
 				oldestTweet ++;
 			}
 			$('.tweet').removeClass('new');
