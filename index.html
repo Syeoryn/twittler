@@ -22,8 +22,8 @@
 			var $tweet = $('<div class="new tweet"></div>');
 			var date = tweet.created_at;
 			var timestamp = moment(date).fromNow();
-			$tweet.append('<h3 id="name">' + '@' + tweet.user + '    <font size=2.5px>' + timestamp + '</font></h3>');
-//			$tweet.append('<p id="timestamp">' + timestamp + '</p>');
+			$tweet.append('<h3><span class="name">' + '@' + tweet.user + ' </span><font size=2.5px>' + timestamp + '</font></h3>');
+			$tweet.addClass(tweet.user);
 			$tweet.append('<p id="message">' + tweet.message + '</p>');
 			$('.update').after($tweet);
 		}
@@ -35,14 +35,21 @@
 				$('body :nth-last-child(' + oldestTweet+2 + ') font').text(moment(date).fromNow());
 				oldestTweet ++;
 			}
+			
 			$('.tweet').removeClass('new');
 			while(numberPosted < streams.home.length){
 				makeTweet(numberPosted);
 				numberPosted ++;
 			}
+			
+			$('.name').delegate('','click',function(){
+				var name = $(this).text().slice(1);
+				$('.tweet:not(.'+name+')').hide();
+			});
 		}
 		
 		$('.update').on('click',function(){
+			$('.tweet').show();
 			updateTweets();
 			$('.update').text('0 new Tweets');
 			$('title').text('Twittler');

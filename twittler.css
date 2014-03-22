@@ -27,3 +27,7 @@ div {
 .new{
 	background-color: rgb(51, 136, 216);
 }
+
+.name{
+	cursor:pointer;
+}
